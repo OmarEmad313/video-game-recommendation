@@ -1,0 +1,658 @@
+[
+    {
+        "id": 35004,
+        "category": 0,
+        "first_release_date": 1437696000,
+        "game_modes": [
+            {
+                "id": 2,
+                "name": "Multiplayer"
+            },
+            {
+                "id": 5,
+                "name": "Massively Multiplayer Online (MMO)"
+            }
+        ],
+        "genres": [
+            {
+                "id": 15,
+                "name": "Strategy"
+            },
+            {
+                "id": 32,
+                "name": "Indie"
+            }
+        ],
+        "name": "Demon Horde Master",
+        "platforms": [
+            {
+                "id": 6,
+                "name": "PC (Microsoft Windows)"
+            }
+        ],
+        "similar_games": [
+            {
+                "id": 33603,
+                "name": "Tavern Tycoon"
+            },
+            {
+                "id": 36962,
+                "name": "Starship Theory"
+            },
+            {
+                "id": 51577,
+                "name": "Rise of Industry"
+            },
+            {
+                "id": 65827,
+                "name": "Bronze Age"
+            },
+            {
+                "id": 79134,
+                "name": "Ancient Cities"
+            },
+            {
+                "id": 107992,
+                "name": "Tech Corp."
+            },
+            {
+                "id": 111043,
+                "name": "Pax Nova"
+            },
+            {
+                "id": 113402,
+                "name": "Dungeon Of Dragon Knight"
+            },
+            {
+                "id": 115539,
+                "name": "The Castles of Burgundy"
+            },
+            {
+                "id": 116674,
+                "name": "Atrium"
+            }
+        ]
+    },
+    {
+        "id": 79899,
+        "category": 0,
+        "collection": {
+            "id": 2745,
+            "name": "Gemstone"
+        },
+        "first_release_date": 915062400,
+        "game_modes": [
+            {
+                "id": 5,
+                "name": "Massively Multiplayer Online (MMO)"
+            }
+        ],
+        "genres": [
+            {
+                "id": 12,
+                "name": "Role-playing (RPG)"
+            }
+        ],
+        "keywords": [
+            {
+                "id": 151,
+                "name": "medieval"
+            },
+            {
+                "id": 296,
+                "name": "fantasy"
+            },
+            {
+                "id": 900,
+                "name": "mmorpg"
+            },
+            {
+                "id": 1846,
+                "name": "mud"
+            },
+            {
+                "id": 2071,
+                "name": "sequel"
+            },
+            {
+                "id": 2396,
+                "name": "text-based"
+            },
+            {
+                "id": 4260,
+                "name": "text adventure"
+            },
+            {
+                "id": 27211,
+                "name": "multi user dungeon"
+            }
+        ],
+        "name": "Gemstone IV",
+        "platforms": [
+            {
+                "id": 3,
+                "name": "Linux"
+            },
+            {
+                "id": 6,
+                "name": "PC (Microsoft Windows)"
+            },
+            {
+                "id": 14,
+                "name": "Mac"
+            },
+            {
+                "id": 82,
+                "name": "Web browser"
+            }
+        ],
+        "similar_games": [
+            {
+                "id": 17350,
+                "name": "Eldevin"
+            },
+            {
+                "id": 19698,
+                "name": "Albion Online"
+            },
+            {
+                "id": 23651,
+                "name": "Echo of Soul"
+            },
+            {
+                "id": 34155,
+                "name": "The Black Death"
+            },
+            {
+                "id": 35450,
+                "name": "Tree of Life"
+            },
+            {
+                "id": 47823,
+                "name": "Citadel: Forged With Fire"
+            },
+            {
+                "id": 59427,
+                "name": "Fairy Tail Online"
+            },
+            {
+                "id": 64061,
+                "name": "Kando World"
+            },
+            {
+                "id": 68393,
+                "name": "Legends of Equestria"
+            },
+            {
+                "id": 80916,
+                "name": "Omensight"
+            }
+        ],
+        "themes": [
+            {
+                "id": 22,
+                "name": "Historical"
+            }
+        ]
+    },
+    {
+        "id": 89616,
+        "category": 0,
+        "game_modes": [
+            {
+                "id": 1,
+                "name": "Single player"
+            }
+        ],
+        "genres": [
+            {
+                "id": 9,
+                "name": "Puzzle"
+            },
+            {
+                "id": 33,
+                "name": "Arcade"
+            }
+        ],
+        "involved_companies": [
+            {
+                "id": 154613,
+                "company": {
+                    "id": 38839,
+                    "name": "Meng Li"
+                },
+                "developer": true
+            }
+        ],
+        "name": "Bubble Whirl Shooter",
+        "platforms": [
+            {
+                "id": 34,
+                "name": "Android"
+            },
+            {
+                "id": 39,
+                "name": "iOS"
+            }
+        ],
+        "similar_games": [
+            {
+                "id": 18115,
+                "name": "Amazing Maze"
+            },
+            {
+                "id": 19222,
+                "name": "Digging Jim"
+            },
+            {
+                "id": 25905,
+                "name": "Winds of Revenge"
+            },
+            {
+                "id": 41349,
+                "name": "Hayama Reiko no Date de Blackjack"
+            },
+            {
+                "id": 85804,
+                "name": "Sunday Lawn"
+            },
+            {
+                "id": 87170,
+                "name": "One More Brick"
+            },
+            {
+                "id": 87507,
+                "name": "Whirly Word HD"
+            },
+            {
+                "id": 90788,
+                "name": "Munchkin Match"
+            },
+            {
+                "id": 90965,
+                "name": "Donut Drop by ABCya"
+            },
+            {
+                "id": 95776,
+                "name": "Turn It On!"
+            }
+        ]
+    },
+    {
+        "id": 64881,
+        "category": 0,
+        "collection": {
+            "id": 870,
+            "name": "Lode Runner"
+        },
+        "genres": [
+            {
+                "id": 8,
+                "name": "Platform"
+            },
+            {
+                "id": 9,
+                "name": "Puzzle"
+            }
+        ],
+        "keywords": [
+            {
+                "id": 1293,
+                "name": "achievements"
+            },
+            {
+                "id": 2049,
+                "name": "platformer"
+            },
+            {
+                "id": 2875,
+                "name": "puzzle"
+            },
+            {
+                "id": 2992,
+                "name": "no jumping"
+            },
+            {
+                "id": 4130,
+                "name": "gold"
+            },
+            {
+                "id": 4134,
+                "name": "digital distribution"
+            },
+            {
+                "id": 4178,
+                "name": "options menu"
+            },
+            {
+                "id": 4317,
+                "name": "ladder"
+            },
+            {
+                "id": 4332,
+                "name": "tutorial"
+            },
+            {
+                "id": 4476,
+                "name": "digging"
+            },
+            {
+                "id": 4510,
+                "name": "touch controls"
+            },
+            {
+                "id": 4890,
+                "name": "xbox live"
+            },
+            {
+                "id": 5523,
+                "name": "leaderboard"
+            },
+            {
+                "id": 5609,
+                "name": "zoom"
+            },
+            {
+                "id": 6782,
+                "name": "virtual joystick"
+            },
+            {
+                "id": 7235,
+                "name": "pit"
+            }
+        ],
+        "name": "Lode Runner Classic",
+        "similar_games": [
+            {
+                "id": 19150,
+                "name": "Vagante"
+            },
+            {
+                "id": 20329,
+                "name": "Figment"
+            },
+            {
+                "id": 20342,
+                "name": "Toby: The Secret Mine"
+            },
+            {
+                "id": 24426,
+                "name": "Forgotton Anne"
+            },
+            {
+                "id": 28070,
+                "name": "Planet Alpha"
+            },
+            {
+                "id": 55173,
+                "name": "Semblance"
+            },
+            {
+                "id": 55190,
+                "name": "Pikuniku"
+            },
+            {
+                "id": 56033,
+                "name": "Dream Alone"
+            },
+            {
+                "id": 77529,
+                "name": "Etherborn"
+            },
+            {
+                "id": 89597,
+                "name": "Unbound: Worlds Apart"
+            }
+        ],
+        "themes": [
+            {
+                "id": 1,
+                "name": "Action"
+            }
+        ]
+    },
+    {
+        "id": 95080,
+        "category": 0,
+        "name": "Dotra"
+    },
+    {
+        "id": 85450,
+        "category": 0,
+        "involved_companies": [
+            {
+                "id": 85230,
+                "company": {
+                    "id": 66,
+                    "name": "Activision"
+                },
+                "developer": false
+            }
+        ],
+        "name": "Transformers Prime: The Game"
+    },
+    {
+        "id": 184551,
+        "category": 0,
+        "genres": [
+            {
+                "id": 8,
+                "name": "Platform"
+            },
+            {
+                "id": 9,
+                "name": "Puzzle"
+            }
+        ],
+        "name": "Square Up",
+        "similar_games": [
+            {
+                "id": 19222,
+                "name": "Digging Jim"
+            },
+            {
+                "id": 25905,
+                "name": "Winds of Revenge"
+            },
+            {
+                "id": 28070,
+                "name": "Planet Alpha"
+            },
+            {
+                "id": 41349,
+                "name": "Hayama Reiko no Date de Blackjack"
+            },
+            {
+                "id": 87507,
+                "name": "Whirly Word HD"
+            },
+            {
+                "id": 95776,
+                "name": "Turn It On!"
+            },
+            {
+                "id": 212779,
+                "name": "Chronotron"
+            },
+            {
+                "id": 222356,
+                "name": "Chiyo-chan's Key"
+            },
+            {
+                "id": 225971,
+                "name": "Baseball Brat Badventure"
+            },
+            {
+                "id": 228094,
+                "name": "Starcatcher"
+            }
+        ]
+    },
+    {
+        "id": 91579,
+        "category": 0,
+        "name": "Racing Live"
+    },
+    {
+        "id": 86463,
+        "category": 0,
+        "first_release_date": 1597017600,
+        "game_modes": [
+            {
+                "id": 1,
+                "name": "Single player"
+            }
+        ],
+        "genres": [
+            {
+                "id": 10,
+                "name": "Racing"
+            },
+            {
+                "id": 14,
+                "name": "Sport"
+            },
+            {
+                "id": 31,
+                "name": "Adventure"
+            },
+            {
+                "id": 32,
+                "name": "Indie"
+            }
+        ],
+        "name": "Choo-Choo! Train Rides!",
+        "platforms": [
+            {
+                "id": 6,
+                "name": "PC (Microsoft Windows)"
+            }
+        ],
+        "similar_games": [
+            {
+                "id": 25311,
+                "name": "Star Control: Origins"
+            },
+            {
+                "id": 25646,
+                "name": "Don't Knock Twice"
+            },
+            {
+                "id": 80916,
+                "name": "Omensight"
+            },
+            {
+                "id": 96217,
+                "name": "Eternity: The Last Unicorn"
+            },
+            {
+                "id": 105269,
+                "name": "Gene Rain"
+            },
+            {
+                "id": 106987,
+                "name": "Torchlight III"
+            },
+            {
+                "id": 111130,
+                "name": "Apsulov: End of Gods"
+            },
+            {
+                "id": 113360,
+                "name": "Hytale"
+            },
+            {
+                "id": 113895,
+                "name": "Havocado"
+            },
+            {
+                "id": 118871,
+                "name": "GRID"
+            }
+        ],
+        "themes": [
+            {
+                "id": 1,
+                "name": "Action"
+            }
+        ]
+    },
+    {
+        "id": 85031,
+        "category": 0,
+        "first_release_date": 1404345600,
+        "genres": [
+            {
+                "id": 9,
+                "name": "Puzzle"
+            }
+        ],
+        "involved_companies": [
+            {
+                "id": 130531,
+                "company": {
+                    "id": 709,
+                    "name": "Teyon"
+                },
+                "developer": true
+            },
+            {
+                "id": 130532,
+                "company": {
+                    "id": 4367,
+                    "name": "SelectSoft Publishing"
+                },
+                "developer": false
+            }
+        ],
+        "name": "City Mysteries",
+        "platforms": [
+            {
+                "id": 37,
+                "name": "Nintendo 3DS"
+            }
+        ],
+        "similar_games": [
+            {
+                "id": 10603,
+                "name": "Numba Deluxe"
+            },
+            {
+                "id": 19222,
+                "name": "Digging Jim"
+            },
+            {
+                "id": 25905,
+                "name": "Winds of Revenge"
+            },
+            {
+                "id": 41349,
+                "name": "Hayama Reiko no Date de Blackjack"
+            },
+            {
+                "id": 86974,
+                "name": "Word Cross Puzzle"
+            },
+            {
+                "id": 87507,
+                "name": "Whirly Word HD"
+            },
+            {
+                "id": 88511,
+                "name": "Word Charm"
+            },
+            {
+                "id": 90788,
+                "name": "Munchkin Match"
+            },
+            {
+                "id": 95776,
+                "name": "Turn It On!"
+            },
+            {
+                "id": 106992,
+                "name": "A Fisherman's Tale"
+            }
+        ]
+    }
+]
