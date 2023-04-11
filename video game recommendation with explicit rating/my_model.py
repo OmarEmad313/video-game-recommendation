@@ -1,7 +1,8 @@
 import mysql.connector
 import numpy as np
 import tensorflow as tf
-
+import keras
+from tensorflow.keras import layers
 
 cnx = mysql.connector.connect(
     host="localhost",
@@ -33,23 +34,98 @@ game_encoded2game = {i: x for i, x in enumerate(game_ids)}
 user = list(map(lambda x: user2user_encoded[x], all_user_ids))
 game = list(map(lambda x: game2game_encoded[x], all_game_ids))
 
+
+x = [list(pair) for pair in zip(user, game)]
+x = np.array(x, dtype=int)
+
+
 num_users = len(user2user_encoded)
 num_games = len(game_encoded2game)
 
 
 users_ratings = [np.float32(x) for x in users_ratings]
+
 min_rating = min(users_ratings)
 max_rating = max(users_ratings)
-print(
-    "Number of users: {}, Number of Games: {}, Min rating: {}, Max rating: {}".format(
-        num_users, num_games, min_rating, max_rating
-    )
+y = [(x - min_rating) / (max_rating - min_rating)
+     for x in users_ratings]
+y= np.array(y, dtype='float64')
+
+
+train_indices = int(0.7*len(x))
+x_train, x_val, y_train, y_val = (
+    x[:train_indices],
+    x[train_indices:],
+    y[:train_indices],
+    y[train_indices:],
 )
+# print(
+#     "Number of users: {}, Number of Games: {}, Min rating: {}, Max rating: {}".format(
+#         num_users, num_games, min_rating, max_rating
+#     )
+# )
 
 # Close the database connection
-cursor.close() 
+cursor.close()
 cnx.close()
 model = tf.keras.models.load_model("my_model")
+print(x_train)
+print(x_val)
+print(y_train[2])
+print(y_val)
+
+
+EMBEDDING_SIZE = 50
+
+
+class RecommenderNet(keras.Model):
+    def __init__(self, num_users, num_games, embedding_size, **kwargs):
+        super().__init__(**kwargs)
+        self.num_users = num_users
+        self.num_games = num_games
+        self.embedding_size = embedding_size
+        # categorical variable with a high cardinality
+        self.user_embedding = layers.Embedding(
+            num_users,
+            embedding_size,
+            embeddings_initializer="he_normal",
+            embeddings_regularizer=keras.regularizers.l2(1e-6),
+        )
+        self.user_bias = layers.Embedding(num_users, 1)
+        self.game_embedding = layers.Embedding(
+            num_games,
+            embedding_size,
+            embeddings_initializer="he_normal",
+            embeddings_regularizer=keras.regularizers.l2(1e-6),
+        )
+        self.game_bias = layers.Embedding(num_games, 1)
+
+    def call(self, inputs):
+        user_vector = self.user_embedding(inputs[:, 0])
+        user_bias = self.user_bias(inputs[:, 0])
+        game_vector = self.game_embedding(inputs[:, 1])
+        game_bias = self.game_bias(inputs[:, 1])
+        dot_user_game = tf.tensordot(user_vector, game_vector, 2)
+        # Add all the components (including bias)
+        x = dot_user_game + user_bias + game_bias
+        # The sigmoid activation forces the rating to between 0 and 1
+        return tf.nn.sigmoid(x)
+
+model = RecommenderNet(num_users, num_games, EMBEDDING_SIZE)
+model.compile(
+    loss=tf.keras.losses.BinaryCrossentropy(),
+    optimizer=keras.optimizers.Adam(learning_rate=0.001)
+    # ,  metrics=['accuracy', f1_m, precision_m, recall_m]
+)
+model.fit(
+    x=x_train,
+    y=y_train,
+    batch_size=64,
+    epochs=20,
+    verbose=1,
+    validation_data=(x_val, y_val),
+)
+model.save('my_model_updated')
 # dataList = [[964,  11],
 #             [964, 127],
 #             [964, 124],
@@ -188,14 +264,11 @@ model = tf.keras.models.load_model("my_model")
 #             [964,  43],
 #             [964,  17],
 #             [964,  94]]
-# arr = np.array(dataList, dtype=np.int64)
-
-
-# print(type(arr))
-
-# print(model.summary())
-# ratings = model.predict(arr)
+#arr = np.array(dataList, dtype=np.int64)
+model = tf.keras.models.load_model("my_model_updated")
+print(model.summary())
+#ratings = model.predict(arr)
 # min_value = ratings.min()
 # max_value = ratings.max()
 # scaled_ratings = (ratings - min_value) / (max_value - min_value) * (1 - 0) + 0
-#print(scaled_ratings)
+# print(scaled_ratings)
