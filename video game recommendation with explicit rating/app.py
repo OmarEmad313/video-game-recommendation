@@ -14,7 +14,7 @@ def retrain():
 def recommend():
     user_id = int(request.args.get('user_id'))
     recommendations = my_model.recommend(user_id)
-    return jsonify({"recommendations": recommendations.tolist()}), 200
+    return jsonify(recommendations), 200
 
 
 if __name__ == '__main__':

@@ -26,8 +26,9 @@ def retrain():
     all_user_ids = [item[0] for item in result]
     all_game_ids = [item[1] for item in result]
     users_ratings = [item[2] for item in result]
-    # PREPROCESSING
     user_ids = list(set(all_user_ids))
+
+    # PREPROCESSING
     user2user_encoded = {x: i for i, x in enumerate(user_ids)}
     userencoded2user = {i: x for i, x in enumerate(user_ids)}
 
@@ -62,7 +63,6 @@ def retrain():
     # Close the database connection
     cursor.close()
     cnx.close()
-    model = tf.keras.models.load_model("my_model")
 
     EMBEDDING_SIZE = 50
 
@@ -105,15 +105,15 @@ def retrain():
         optimizer=keras.optimizers.Adam(learning_rate=0.001)
         # ,  metrics=['accuracy', f1_m, precision_m, recall_m]
     )
-    # model.fit(
-    #     x=x_train,
-    #     y=y_train,
-    #     batch_size=64,
-    #     epochs=20,
-    #     verbose=1,
-    #     validation_data=(x_val, y_val),
-    # )
-    # model.save('my_model_updated')
+    model.fit(
+        x=x_train,
+        y=y_train,
+        batch_size=64,
+        epochs=20,
+        verbose=1,
+        validation_data=(x_val, y_val),
+    )
+    model.save('my_model_updated')
 
 
 def recommend(user_id):
@@ -167,24 +167,31 @@ def recommend(user_id):
     user_game_array = np.hstack(
         ([[user_encoder]] * len(games_not_played), games_not_played)
     )
-
-    print(user_game_array)
     model = tf.keras.models.load_model("my_model_updated")
 
     ratings = model.predict(user_game_array).flatten()
-    print(ratings)
-    # Save the top recommended games and their ratings
-    # top_ratings_indices = ratings.argsort()[-10:][::-1]
-    # recommended_game_ids = [game_encoded2game.get(
-    #     game[1]) for game in user_game_array[top_ratings_indices]]
-    # recommended_ratings = ratings[top_ratings_indices]
+    print((user_game_array))
+    print((ratings))
 
-    # recommendations = list(zip(recommended_game_ids, recommended_ratings))
-    return ratings
+    # Extract the game indices from the user_game_array
+    game_indices = user_game_array[:, 1]
 
-# model.save('my_model_updated')
-############################ HERE WE RUN THE MODEL #####################################
-# min_value = ratings.min()
-# max_value = ratings.max()
-# scaled_ratings = (ratings - min_value) / (max_value - min_value) * (1 - 0) + 0
-# print(scaled_ratings)
+    # Create a dictionary mapping game index to rating value
+    game_ratings = {game_index: rating for game_index,
+                    rating in zip(game_indices, ratings)}
+    # Replace game index with real game ID in the game_ratings dictionary
+    game_ratings_with_ids = {
+        game_encoded2game[game_index]: rating for game_index, rating in game_ratings.items()}
+
+    min_value = min(game_ratings_with_ids.values())
+    max_value = max(game_ratings_with_ids.values())
+
+# Scale the values and create a new dictionary with the original keys and scaled values
+    scaled_game_ratings_with_ids = {key: int(round(((value - min_value) / (max_value - min_value)
+                                                    * (1 - 0) + 0), 2) * 100) for key, value in game_ratings_with_ids.items()}
+
+    return scaled_game_ratings_with_ids
+
+
+# retrain()
+# recommend(5)
