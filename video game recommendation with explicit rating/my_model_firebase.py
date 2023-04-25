@@ -1,36 +1,48 @@
-import mysql.connector
-import numpy as np
-import pandas as pd
-import tensorflow as tf
-import keras
 from tensorflow.keras import layers
-
+import keras
+import tensorflow as tf
+import pandas as pd
+import numpy as np
+import mysql.connector
+import firebase_admin
+from firebase_admin import firestore
+# from firebase_admin import db
+from firebase_admin import credentials
 
 ################### Here we retrain the MODEL ####################
+
+
+def initialize_firebase():
+    if not firebase_admin._apps:
+        cred = credentials.Certificate(
+            'mobile-app-543bf-firebase-adminsdk-d937c-f23c606ee2.json')
+        firebase_admin.initialize_app(cred)
+
 def retrain():
-    cnx = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="gamer_guide"
-    )
+    initialize_firebase()
+    db = firestore.client()
+    comments_ref = db.collection('comments')
 
-    # Fetch data from the database
-    cursor = cnx.cursor()
-    query = "SELECT user_id,game_id,rating FROM `user_preferences`;"
-    cursor.execute(query)
+    # Fetch the snapshot and process the documents
+    comments_records = []
 
-    input_data = []
+    for doc in comments_ref.stream():
+        comments_record = {
+            'commentDescription': doc.get('commentDescription'),
+            'starsNumber': doc.get('starsNumber'),
+            'gameId': doc.get('gameId'),
+            'userId': doc.get('userId')
+        }
+        comments_records.append(comments_record)
 
-    result = cursor.fetchall()
-    all_user_ids = [item[0] for item in result]
-    all_game_ids = [item[1] for item in result]
-    users_ratings = [item[2] for item in result]
+    all_user_ids = [record['userId'] for record in comments_records]
+    all_game_ids = [record['gameId'] for record in comments_records]
+    users_ratings = [record['starsNumber'] for record in comments_records]
+
     print(all_user_ids)
     print(all_game_ids)
     print(users_ratings)
     user_ids = list(set(all_user_ids))
-  
 
     # PREPROCESSING
     user2user_encoded = {x: i for i, x in enumerate(user_ids)}
@@ -64,9 +76,9 @@ def retrain():
         y[:train_indices],
         y[train_indices:],
     )
+    print(x)
+    print(y)
     # Close the database connection
-    cursor.close()
-    cnx.close()
 
     EMBEDDING_SIZE = 50
 
@@ -121,24 +133,26 @@ def retrain():
 
 
 def recommend(user_id):
-    cnx = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="gamer_guide"
-    )
+    initialize_firebase()
 
-    # Fetch data from the database
-    cursor = cnx.cursor()
-    query = "SELECT user_id,game_id,rating FROM `user_preferences`;"
-    cursor.execute(query)
+    db = firestore.client()
+    comments_ref = db.collection('comments')
 
-    input_data = []
+    # Fetch the snapshot and process the documents
+    comments_records = []
 
-    result = cursor.fetchall()
-    all_user_ids = [item[0] for item in result]
-    all_game_ids = [item[1] for item in result]
-    users_ratings = [item[2] for item in result]
+    for doc in comments_ref.stream():
+        comments_record = {
+            'commentDescription': doc.get('commentDescription'),
+            'starsNumber': doc.get('starsNumber'),
+            'gameId': doc.get('gameId'),
+            'userId': doc.get('userId')
+        }
+        comments_records.append(comments_record)
+    all_user_ids = [record['userId'] for record in comments_records]
+    all_game_ids = [record['gameId'] for record in comments_records]
+    users_ratings = [record['starsNumber'] for record in comments_records]
+
     # PREPROCESSING
     user_ids = list(set(all_user_ids))
     user2user_encoded = {x: i for i, x in enumerate(user_ids)}
@@ -147,10 +161,13 @@ def recommend(user_id):
     game_ids = list(set(all_game_ids))
     game2game_encoded = {x: i for i, x in enumerate(game_ids)}
     game_encoded2game = {i: x for i, x in enumerate(game_ids)}
+    data = {
+        'user_id': all_user_ids,
+        'game_id': all_game_ids,
+        'user_rating': users_ratings
+    }
 
-    df = pd.DataFrame(result, columns=['user_id', 'game_id', 'user_rating'])
-    print(df)
-
+    df = pd.DataFrame(data)
     games_df = df["game_id"]
     games_df = games_df.rename('id')
     games_df = games_df.to_frame()
@@ -197,5 +214,6 @@ def recommend(user_id):
 
     return scaled_game_ratings_with_ids
 
-retrain()
-recommend(5)
+
+#retrain()
+print("recommendation ",recommend("CgVbyyHmer3HUgDleQFW"))
