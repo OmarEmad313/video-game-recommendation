@@ -197,5 +197,5 @@ def recommend(user_id):
 
     return scaled_game_ratings_with_ids
 
-retrain()
-recommend(5)
+# retrain()
+# recommend(5)

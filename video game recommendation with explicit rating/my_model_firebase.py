@@ -18,7 +18,8 @@ def initialize_firebase():
             'mobile-app-543bf-firebase-adminsdk-d937c-f23c606ee2.json')
         firebase_admin.initialize_app(cred)
 
-def retrain():
+
+def retrainMobile():
     initialize_firebase()
     db = firestore.client()
     comments_ref = db.collection('comments')
@@ -132,7 +133,7 @@ def retrain():
     model.save('my_model_updated')
 
 
-def recommend(user_id):
+def recommendMobile(user_id):
     initialize_firebase()
 
     db = firestore.client()
@@ -209,11 +210,13 @@ def recommend(user_id):
     max_value = max(game_ratings_with_ids.values())
 
 # Scale the values and create a new dictionary with the original keys and scaled values
-    scaled_game_ratings_with_ids = {key: int(round(((value - min_value) / (max_value - min_value)
-                                                    * (1 - 0) + 0), 2) * 100) for key, value in game_ratings_with_ids.items()}
+    scaled_game_ratings_with_ids = {
+        key: (int(round(((value - min_value) / (max_value - min_value) * (1 - 0) + 0), 2) * 100) if int(round(((value - min_value) / (max_value - min_value) * (1 - 0) + 0), 2) * 100) != 100 else 99)
+        for key, value in game_ratings_with_ids.items()
+            }
 
     return scaled_game_ratings_with_ids
 
 
-#retrain()
-print("recommendation ",recommend("CgVbyyHmer3HUgDleQFW"))
+# retrain()
+#print("recommendation ", recommendM("CgVbyyHmer3HUgDleQFW"))
